@@ -3,9 +3,6 @@ from appJar import gui
 from Tkinter import *
 from Tkinter import Tk, Canvas, Frame, Button
 from Tkinter import BOTH, W, NW, SUNKEN, TOP, X, FLAT, LEFT
-'''
-common version
-'''
 
 canvas_width = 400
 canvas_height = 400
@@ -30,12 +27,12 @@ def draw(L):
 def flip(event):
 	x = event.x / 20
 	y = event.y / 20
-	if (test[x][y] == 0):
-		test[x][y] = 1
+	if (board[x][y] == 0):
+		board[x][y] = 1
 	draw(board)
 
 def handlekey(event):
-	update_board(test)
+	update_board(board)
 	draw(board)
 
 w.bind("<Button-2>", handlekey)
