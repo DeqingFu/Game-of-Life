@@ -3,6 +3,9 @@ from appJar import gui
 from Tkinter import *
 from Tkinter import Tk, Canvas, Frame, Button
 from Tkinter import BOTH, W, NW, SUNKEN, TOP, X, FLAT, LEFT
+'''
+common version
+'''
 
 canvas_width = 400
 canvas_height = 400
@@ -14,7 +17,7 @@ w = Canvas(master, width=canvas_width, height=canvas_height)
 # app=gui()
 
 
-test = new_board(20,20)
+board = new_board(20,20)
 
 def draw(L):
 	for i in range(len(L)):
@@ -29,11 +32,11 @@ def flip(event):
 	y = event.y / 20
 	if (test[x][y] == 0):
 		test[x][y] = 1
-	draw(test)
+	draw(board)
 
 def handlekey(event):
 	update_board(test)
-	draw(test)
+	draw(board)
 
 w.bind("<Button-2>", handlekey)
 w.bind("<Button-1>", flip)
