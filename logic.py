@@ -1,13 +1,19 @@
 import copy
+import math
+import random
 
 def new_board(row, col):
     twod_list = []
     for i in range(0,row):
         oned_list = []
         for j in range(0,col):
-            oned_list.append(1)
+            oned_list.append(0)
         twod_list.append(oned_list)
-    return twod_list
+    rand_board = copy.deepcopy(twod_list)
+    rand_row = math.trunc(random.random() * row)
+    rand_col = math.trunc(random.random() * col)
+    rand_board[rand_row][rand_col] = 1
+    return rand_board
 
 def count(board,r,c):
     row = len(board)
