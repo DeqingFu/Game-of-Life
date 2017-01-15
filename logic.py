@@ -76,10 +76,12 @@ def update_board(board):
     counted_board = copy.deepcopy(board)
     for i in range(0,num_of_rows):
         for j in range(0,num_of_cols):
-            if counted_board[i][j] > 3 or counted_board[i][j] < 2 and original_board[i][j]:
+            if counted_board[i][j] > 3 or counted_board[i][j] < 2 and original_board[i][j] != 0:
                 board[i][j] = 0 #if an alive cell has more than three or less than two adjacent alive cells, it dies
-            elif counted_board[i][j] == 3 and (not original_board[i][j]):
+            elif counted_board[i][j] == 3 and original_board[i][j] == 0:
                 board[i][j] = 1 #if a dead cell has three alive adjacent cells, it becomes alive
+            elif original_board[i][j] == 0:
+                board[i][j] = original_board[i][j]
             else:
                 board[i][j] = original_board[i][j] + 1 #the value means age, every time self plus 1
-    return counted_board
+    return board
