@@ -1,4 +1,3 @@
-
 import copy
 import math
 import random
@@ -143,19 +142,23 @@ def update_board(board):
                 board[i][j] = counted_board[i][j][1] #if a dead cell has three alive adjacent cells, it becomes alive
     return board
 
-'''
-#test case
-#print(new_board(5,5)) #ok
-#print(new_board(2,3)) #ok
-#static
-bd1 = [[0,0,0,0,0],[0,0,1,1,0],[0,1,0,1,0],[0,0,1,0,0],[0,0,0,0,0]]
-#print(count(bd1,1,2)) #ok
-print(update_board(bd1))
-#oscillate
-bd2 = [[0,0,0,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,0,0,0,0]]
-print(update_board(bd2))
-#gilder
-test_board = [[0,0,0,0,0],[0,1,0,2,0],[0,1,0,2,0],[0,1,0,2,0],[0,0,0,0,0]]
-update_board(test_board)
-print test_board
-'''
+def get_num_player(board,player):
+    row = len(board)
+    col = len(board[1])
+    result = 0;
+    for i in range(0,row):
+        for j in range(0,col):
+            if board[i][j] == player:
+                result += 1
+    return result
+
+def finalize(board):
+    row = len(board)
+    col = len(board[0])
+    end = (row + col) / 2
+    if get_num_player(board,1) <= 4 or get_num_player(board, 2) >= end:
+        return "Player 2, you win!"
+    elif get_num_player(board,2) <= 4 or get_num_player(board, 1) >= end:
+        return "Player 1, you win!"
+    else:
+        return 0
